@@ -23,9 +23,6 @@
 所有的Exploit和Payload都有一些内置的参数，诸如远程IP、 本地IP、LPORT、RPORT、服务路径、用户名等。这些参数 在利用exp之前需要进行配置，可以使用Show Options命令 来显示具体的选项。
 
 
-`arp-scan -l`
-扫描本地网段
-`nmap --script=vuln  目标`
 `msfconsole` 启动
 search 搜索
 use 使用
