@@ -11,17 +11,14 @@
             "id": "7bb7ac4e87c915d4",
             "type": "leaf",
             "state": {
-              "type": "canvas",
+              "type": "markdown",
               "state": {
-                "file": "未命名.canvas",
-                "viewState": {
-                  "x": -355,
-                  "y": -470,
-                  "zoom": -0.10355619182659741
-                }
+                "file": "Docker-commit.md",
+                "mode": "source",
+                "source": false
               },
-              "icon": "lucide-layout-dashboard",
-              "title": "未命名"
+              "icon": "lucide-file",
+              "title": "Docker-commit"
             }
           }
         ]
@@ -148,6 +145,7 @@
   },
   "left-ribbon": {
     "hiddenItems": {
+      "obsidian-importer:Open Importer": false,
       "switcher:打开快速切换": false,
       "graph:查看关系图谱": false,
       "canvas:新建白板": false,
