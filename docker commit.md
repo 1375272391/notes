@@ -12,7 +12,7 @@ OPTIONS说明：
 ```
 ### 将容器保存为新镜像:
 
-`docker commit my_container my_new_image`
+`docker commit [containerID] [my_new_image]`
 
 ### 将名为 my_container 的容器保存为一个名为 my_new_image 的新镜像。
 
@@ -20,7 +20,7 @@ OPTIONS说明：
 
 `docker commit my_container my_new_image:latest`
 
-将容器保存为带有 latest 标签的镜像。
+将容器保存为带有 `latest` 标签的镜像。
 
 **添加作者信息和提交信息:**
 
@@ -38,12 +38,12 @@ OPTIONS说明：
 
 **启动一个容器:**
 
-`docker run -d -it --name my_container ubuntu bash`
+`docker run -d -it --name [container_name] ubuntu bash`
 
 **进行一些更改:**
 
-`docker exec my_container apt-get update`
-`docker exec my_container apt-get install -y nginx`
+`docker exec [container] apt-get update`
+`docker exec [container] apt-get install -y nginx`
 
 **提交容器为新镜像:**
 
