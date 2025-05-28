@@ -7,6 +7,8 @@
 find bcce -exec '/bin/sh' \;
 ```
 
+### `searchsploit`
+
 ```
 searchsploit
 /usr/share/exploitdb
