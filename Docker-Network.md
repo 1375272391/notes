@@ -1,4 +1,22 @@
 
+```
+root@xm137-virtual-machine:/home/xm137# docker network
+Usage:  docker network COMMAND
+
+Manage networks
+
+Commands:
+  connect     Connect a container to a network
+  create      Create a network
+  disconnect  Disconnect a container from a network
+  inspect     Display detailed information on one or more networks
+  ls          List networks
+  prune       Remove all unused networks
+  rm          Remove one or more networks
+
+Run 'docker network COMMAND --help' for more information on a command.
+```
+
 1. **`docker network ls`**: 列出所有网络
 2. **`docker network inspect`**: 查看网络详细信息
 3. **`docker network create`**: 创建一个新网络
@@ -6,17 +24,10 @@
 5. **`docker network connect`**: 将一个容器连接到一个网络
 6. **`docker network disconnect`**: 将一个容器从一个网络断开
 
-### `docker network ls` 命令
-
-`docker network inspect [name]`
-
-
-### `docker network create`
+#### `docker network create --help`
 
 ```
-
-[root@host01 ~]# docker network create --help
-
+root@xm137-virtual-machine:/home/xm137# docker network create --help
 Usage:  docker network create [OPTIONS] NETWORK
 
 Create a network
@@ -33,12 +44,19 @@ Options:
       --ip-range strings     Allocate container ip from a sub-range
       --ipam-driver string   IP Address Management Driver (default "default")
       --ipam-opt map         Set IPAM driver specific options (default map[])
-      --ipv6                 Enable IPv6 networking
+      --ipv4                 Enable or disable IPv4 address assignment (default true)
+      --ipv6                 Enable or disable IPv6 address assignment
       --label list           Set metadata on a network
   -o, --opt map              Set driver specific options (default map[])
       --scope string         Control the network's scope
       --subnet strings       Subnet in CIDR format that represents a network segment
- ```
+```
+
+
+### `docker network ls` 命令
+
+`docker network inspect [name]`
+
 
 **常用参数**
 
