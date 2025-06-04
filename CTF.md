@@ -10,6 +10,7 @@ find bcce -exec '/bin/sh' \;
 ### `searchsploit`
 
 ```
+msfconsole
 searchsploit
 /usr/share/exploitdb
 ```
