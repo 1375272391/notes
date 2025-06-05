@@ -13,7 +13,7 @@ Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
 192.168.7.254   00:50:56:e7:52:95       (Unknown)
 ```
 
-得到地址后
+### 得到地址后
 
 ```
 ┌──(kali㉿kali)-[~]
@@ -40,8 +40,7 @@ MAC Address: 00:0C:29:9E:63:89 (VMware)
 cewl http://dc-2/ >> 11.txt
 ```
 
-
-[[dirsearch]]
+### [[dirsearch]]
 
 ```
 dirsearch -u http://dc-2/
@@ -50,7 +49,7 @@ dirsearch -u 192.168.7.129
 
 看到了wp
 
-[[wpscan]]
+### 使用[[wpscan]]
 
 ### 枚举用户
 
@@ -87,7 +86,7 @@ http://dc-2/wp-admin
 ### 使用ssh登录tom
 
 ```
-ssh tom@ -p192.168.7.129 7744
+ssh tom@192.168.7.129 -p 7744
 ```
 
 ### 添加PATH使用更多命令
