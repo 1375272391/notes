@@ -1,2 +1,4 @@
-`nmap --script=vuln target`
+```shell
+nmap --script=vuln target
+```
 

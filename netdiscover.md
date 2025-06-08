@@ -1,4 +1,4 @@
-```
+```zsh
 ┌──(kali㉿kali)-[~]
 └─$ sudo netdiscover -h
 Netdiscover 0.10 [Active/passive ARP reconnaissance tool]

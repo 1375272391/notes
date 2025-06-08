@@ -1,5 +1,5 @@
 
-```
+```zsh
 root@xm137-virtual-machine:/home/xm137# docker commit --help
 Usage:  docker commit [OPTIONS] CONTAINER [REPOSITORY[:TAG]]
 

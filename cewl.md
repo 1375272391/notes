@@ -1,8 +1,8 @@
-```
+```zsh
 cewl http://dc-2/ >> 11.txt
 ```
 
-```
+```zsh
 $ cewl -h
 CeWL 6.2.1 (More Fixes) Robin Wood (robin@digi.ninja) (https://digi.ninja/)
 Usage: cewl [OPTIONS] ... <url>

@@ -1,5 +1,5 @@
 
-```
+```zsh
 root@xm137-virtual-machine:/home/xm137# docker network
 Usage:  docker network COMMAND
 
@@ -26,7 +26,7 @@ Run 'docker network COMMAND --help' for more information on a command.
 
 #### `docker network create --help`
 
-```
+```zsh
 root@xm137-virtual-machine:/home/xm137# docker network create --help
 Usage:  docker network create [OPTIONS] NETWORK
 
@@ -67,17 +67,23 @@ Options:
 - **`--ipv6`**: 启用 IPv6。
 - **`--label`**: 为网络添加标签。
 
-`docker network create --driver bridge --subnet 192.168.1.0/24 my_network`
+```
+docker network create --driver bridge --subnet 192.168.1.0/24 my_network
+```
 
 ### `docker network connect` 命令
 
 将一个容器连接到一个网络。
 
-`docker network connect my_network my_container`
+```
+docker network connect my_network my_container
+```
 
 ### `docker network disconnect` 命令
 
 将一个容器从一个网络断开。
 
-`docker network disconnect [my_network] [my_container]`
+```
+docker network disconnect [my_network] [my_container]
+```
 

