@@ -6,7 +6,7 @@ while (cakesEaten < 3) {
 }
 ```
 
-do while
+# do while
 
 ```kotlin
 var cakesEaten = 0

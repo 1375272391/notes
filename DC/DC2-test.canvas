@@ -1,0 +1,19 @@
+{
+	"nodes":[
+		{"id":"57319de1e318256f","x":0,"y":-177,"width":400,"height":400,"type":"file","file":"DC/DC2.md"},
+		{"id":"01a7f5f97a40b983","x":580,"y":-163,"width":420,"height":373,"type":"file","file":"arp-scan.md"},
+		{"id":"01bfec2b00ce70cf","x":580,"y":-300,"width":250,"height":60,"type":"text","text":"首先取得IP地址"},
+		{"id":"dd6e07fa6b01c038","x":1095,"y":-163,"width":425,"height":373,"type":"file","file":"nmap.md"},
+		{"id":"bd80e3ca92af537d","x":1095,"y":-300,"width":250,"height":60,"type":"text","text":"扫描端口"},
+		{"id":"972b13773f2ff8c1","x":1600,"y":-163,"width":375,"height":373,"type":"file","file":"dirsearch.md"},
+		{"id":"0d58680f9a245232","x":2060,"y":-163,"width":420,"height":373,"type":"file","file":"wpscan.md"},
+		{"id":"7a48f018fcb22cfc","x":1600,"y":-300,"width":250,"height":60,"type":"text","text":"使用目录扫描得到站点框架，后台url"},
+		{"id":"64dbc2e83f9d010b","x":2060,"y":-325,"width":250,"height":110,"type":"text","text":"使用wpscan工具枚举用户名，使用本地账户密码穷举"}
+	],
+	"edges":[
+		{"id":"a135cf9e6ccf28dd","fromNode":"57319de1e318256f","fromSide":"right","toNode":"01a7f5f97a40b983","toSide":"left"},
+		{"id":"f38a6ee4543f5ab8","fromNode":"01a7f5f97a40b983","fromSide":"right","toNode":"dd6e07fa6b01c038","toSide":"left"},
+		{"id":"c2061f012f37ae8c","fromNode":"dd6e07fa6b01c038","fromSide":"right","toNode":"972b13773f2ff8c1","toSide":"left"},
+		{"id":"7852ce85793f651c","fromNode":"972b13773f2ff8c1","fromSide":"right","toNode":"0d58680f9a245232","toSide":"left"}
+	]
+}
