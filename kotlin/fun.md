@@ -37,3 +37,19 @@ val upperCaseString = { text: String -> text.uppercase() }
 
 `->`之前是参数
 `->`之后是函数体
+
+
+```kotlin
+val upperCaseString: (String) -> String = { text -> text.uppercase() }
+```
+
+-> 之前是参数类型
+-> 之后是返回值类型
+
+无参数时为空
+
+```kotlin
+() -> Unit
+```
+https://kotlinlang.org/docs/kotlin-tour-functions.html#return-from-a-function
+
