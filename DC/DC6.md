@@ -276,8 +276,6 @@ Interesting Finding(s):
  WordPress version 5.1.1 identified (Insecure, released on 2019-03-13)
 ```
 
-看其他师傅通过枚举插件，查插件漏洞进去的
-
 得到wordpress 版本
 
 ```shell
@@ -396,14 +394,17 @@ dirb取得管理员url
 
 这里的输入框有限制，换个短的ip
 测试可以实现命令注入
+不论是`|` `;` `&` 都可以实现注入..........
+
 
 ![[Pasted image 20250621202230.png]]
 
-在kali开启
+在kali开启侦听
 ```shell
 ┌──(kali㉿kali)-[~]
 └─$ nc -lvvp 2333
 ```
+输入框有长度限制，应该是前端校验？在前端修改掉验证或许也行？
 
 使用burp抓包修改
 
@@ -433,19 +434,19 @@ GSo7isUM1D4就是graham的密码
 ![[Pasted image 20250621204644.png]]
 
 无密码sudo的
-
-![[Pasted image 20250621205054.png]]
 jens用户可以无密码sudo执行
-
 尝试使用vim编辑，但是vim没有安装
 
+![[Pasted image 20250621205054.png]]
 使用echo加重定向修改文件
+
 添加一行/bin/bash，尝试提权
 目的是以jens的身份运行shell
 
 ```shell
 graham@dc-6:~$ sudo -u jens /home/jens/backups.sh
 ```
+
 以jens身份运行backups.sh
 
 现在是jens用户下了
