@@ -1,5 +1,6 @@
 返回类型后加`?`
 
+
 ```kotlin
  // nullable has nullable String type
 var nullable: String? = "You can keep a null here"
@@ -21,7 +22,7 @@ nullable = null
 ```
 
 安全调用
-为数据类型、参数后添加`?`
+添加`?`
 
 ```kotlin
 fun lengthString(maybeString: String?): Int? = maybeString?.length
@@ -34,7 +35,7 @@ fun main() {
 ```
 
 ## Elvis 运算符
-返回默认值
+`?:` 后返回默认值
 
 ```kotlin
 val nullString: String? = null  
