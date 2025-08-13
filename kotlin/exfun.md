@@ -1,4 +1,5 @@
-为字符串类型添加一个拓展函数
+# 拓展函数
+## 为字符串类型添加一个拓展函数
 
 ```kotlin
 fun String.bold(): String = "<b>$this</b>"
