@@ -78,4 +78,36 @@ fun main() {
 ```
 https://kotlinlang.org/docs/kotlin-tour-intermediate-scope-functions.html#apply
 
+于创建时初始化相关变量，调用相关函数
+主函数仅需调用最后一步
+
+### `run`
+与`apply`类似，你可以使用`run`作用域函数来初始化一个对象，
+但最好使用`run`在代码中的特定时刻初始化一个对象并立即计算结果。
+```kotlin
+class Client() {
+    var token: String? = null
+    fun connect() = println("connected!")
+    fun authenticate() = println("authenticated!")
+    fun getData(): String = "Mock data"
+}
+
+val client: Client = Client().apply {
+    token = "asdf"
+}
+
+fun main() {
+    val result: String = client.run {
+        connect()
+        // connected!
+        authenticate()
+        // authenticated!
+        getData()
+    }
+}
+```
+https://kotlinlang.org/docs/kotlin-tour-intermediate-scope-functions.html#run
+
+在完成必要的初始化操作后，直接执行剩下的步骤
+`.run` 体内的函数会依次执行，并将结果赋值给`result`
 
