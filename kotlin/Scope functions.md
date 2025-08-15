@@ -111,3 +111,88 @@ https://kotlinlang.org/docs/kotlin-tour-intermediate-scope-functions.html#run
 在完成必要的初始化操作后，直接执行剩下的步骤
 `.run` 体内的函数会依次执行，并将结果赋值给`result`
 
+### `also`
+
+使用 also 范围函数对对象完成附加操作，然后返回该对象以继续在代码中使用它，例如编写日志。
+
+```kotlin
+fun main() {
+    val medals: List<String> = listOf("Gold", "Silver", "Bronze")
+    val reversedLongUppercaseMedals: List<String> =
+        medals
+            .map { it.uppercase() }
+            .filter { it.length > 4 }
+            .reversed()
+    println(reversedLongUppercaseMedals)
+    // [BRONZE, SILVER]
+}
+```
+
+```kotlin
+fun main() {
+    val medals: List<String> = listOf("Gold", "Silver", "Bronze")
+    val reversedLongUppercaseMedals: List<String> =
+        medals
+            .map { it.uppercase() }
+            .also { println(it) }
+            // [GOLD, SILVER, BRONZE]
+            .filter { it.length > 4 }
+            .also { println(it) }
+            // [SILVER, BRONZE]
+            .reversed()
+    println(reversedLongUppercaseMedals)
+    // [BRONZE, SILVER]
+}
+```
+
+在执行期间加入also 可以查看其内容
+就像如上所属适合编写日志
+
+### `with`
+
+与其他作用域函数不同，with 不是扩展函数，因此语法不同。您将接收者对象作为参数传递给 with。
+该示例创建 `mainMonitorPrimaryBufferBackedCanvas` 作为 Canvas 类的实例，然后使用不同的函数参数对该实例调用一系列成员函数。
+
+
+```kotlin
+class Canvas {
+    fun rect(x: Int, y: Int, w: Int, h: Int): Unit = println("$x, $y, $w, $h")
+    fun circ(x: Int, y: Int, rad: Int): Unit = println("$x, $y, $rad")
+    fun text(x: Int, y: Int, str: String): Unit = println("$x, $y, $str")
+}
+
+fun main() {
+    val mainMonitorPrimaryBufferBackedCanvas = Canvas()
+
+    mainMonitorPrimaryBufferBackedCanvas.text(10, 10, "Foo")
+    mainMonitorPrimaryBufferBackedCanvas.rect(20, 30, 100, 50)
+    mainMonitorPrimaryBufferBackedCanvas.circ(40, 60, 25)
+    mainMonitorPrimaryBufferBackedCanvas.text(15, 45, "Hello")
+    mainMonitorPrimaryBufferBackedCanvas.rect(70, 80, 150, 100)
+    mainMonitorPrimaryBufferBackedCanvas.circ(90, 110, 40)
+    mainMonitorPrimaryBufferBackedCanvas.text(35, 55, "World")
+    mainMonitorPrimaryBufferBackedCanvas.rect(120, 140, 200, 75)
+    mainMonitorPrimaryBufferBackedCanvas.circ(160, 180, 55)
+    mainMonitorPrimaryBufferBackedCanvas.text(50, 70, "Kotlin")
+}
+```
+
+```kotlin
+val mainMonitorSecondaryBufferBackedCanvas = Canvas()
+with(mainMonitorSecondaryBufferBackedCanvas) {
+    text(10, 10, "Foo")
+    rect(20, 30, 100, 50)
+    circ(40, 60, 25)
+    text(15, 45, "Hello")
+    rect(70, 80, 150, 100)
+    circ(90, 110, 40)
+    text(35, 55, "World")
+    rect(120, 140, 200, 75)
+    circ(160, 180, 55)
+    text(50, 70, "Kotlin")
+}
+```
+
+区别在于在with体内直接调用拓展函数
+而不必每次对实例调用推展函数
+
