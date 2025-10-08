@@ -2,6 +2,7 @@
 ### `let`, `apply`, `run`, `also`, `with`
 
 ## `let`
+
 当您想要在代码中执行空检查并随后使用返回的对象执行进一步的操作时，请使用 let scope 函数。
 
 ```kotlin
@@ -39,7 +40,8 @@ https://kotlinlang.org/docs/kotlin-tour-intermediate-scope-functions.html#let
 
 通过这种方法，您的代码可以处理可能为空值的`地址`变量，并且您可以稍后在代码中使用`确认`变量。
 
-`apply`
+## `apply`
+
 在创建对象时初始化
 ```kotlin
 class Client() {
@@ -194,5 +196,5 @@ with(mainMonitorSecondaryBufferBackedCanvas) {
 ```
 
 区别在于在with体内直接调用拓展函数
-而不必每次对实例调用推展函数
+而不必每次对实例调用拓展函数
 
