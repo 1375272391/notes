@@ -10,7 +10,7 @@ fun B1(pl: A1.() -> Unit) {
     a1.pl()  
 }  
   
-fun main(){  
+fun main() {  
     B1 {  
         test()  
     }  
