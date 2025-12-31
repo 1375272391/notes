@@ -88,3 +88,5 @@ fun main() {
 ```
 
 https://kotlinlang.org/docs/kotlin-tour-functions.html#trailing-lambdas
+
+有关 lambda 表达式的更多信息，请参阅 [Lambda 表达式和匿名函数](https://kotlinlang.org/docs/lambdas.html#lambda-expressions-and-anonymous-functions)。
